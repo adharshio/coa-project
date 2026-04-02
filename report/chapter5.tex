@@ -1,0 +1,36 @@
+\chapter{Discussion}
+
+\section{Memory Integrity Violation}
+In standard architectural models like RISC-V, \texttt{sp+12} serves as a protected slot exclusively designed to hold the saved return address. However, from a hardware standpoint, this data is stored in unprivileged memory. As demonstrated, there is no hardware-level segregation preventing an instruction from overwriting structural metadata. The absolute absence of runtime bounds checking represents the root vulnerability in memory corruption exploits.
+
+\section{Control Flow Hijacking}
+Control flow hijacking is defined by the unauthorized redirection of a program's execution without an explicit logic call. The test proved that by precisely targeting the stack frame and replacing \texttt{ra} from \texttt{0x00000004} to \texttt{0x00000034}, the intended architectural return mechanism becomes an arbitrary execution jump. This reflects real-world techniques such as Return-Oriented Programming (ROP) attacks.
+
+\section{Pipeline Impact}
+The manipulation of an indirect jump (\texttt{jr ra}) introduces deliberate architectural strain. Because the branch address relies on an architectural register loaded from memory, it cannot resolve during IF or ID phases. Resolution at the EX stage strictly generates a 2-cycle control hazard penalty. Specifically, the processor speculatively fetched instructions from the illicit \texttt{secret} path, revealing that the pipeline inherently trusts corrupted registers until verification occurs. 
+
+\section{Security Implications}
+Stack smashing and buffer overflows have dominated CVEs since the Morris Worm in 1988. While modern systems deploy complex layers of abstraction, this experiment proves that vulnerability fundamentally operates at the processor's most basic instruction level. RISC-V's simplified ISA clarifies this vulnerability chain: a single unrestricted store word (\texttt{sw}) instruction is sufficient to entirely subvert processor control flow.
+
+\section{Mitigations}
+Counteracting buffer overflows necessitates defense mechanisms acting on differing levels. 
+
+\begin{table}[h]
+\caption{Mitigation Strategies and Effectiveness}
+\centering
+\begin{tabular}{|p{3cm}|p{7cm}|l|}
+\hline
+\textbf{Mitigation} & \textbf{Mechanism} & \textbf{Would it Stop This?} \\
+\hline
+Stack Canary & Inserts a sentinel value between the buffer and \texttt{saved ra}; validated before return. & Yes \\
+ASLR & Randomizes memory layout so attacker cannot know address of \texttt{secret}. & Yes \\
+DEP / NX & Marks the stack as non-executable. & Partial \\
+Bounds Checking & Hardware or compiler explicitly restricts \texttt{sw} operations to allocated boundaries. & Yes \\
+Safe Languages & Compiler natively prevents direct memory manipulation. & Yes \\
+\hline
+\end{tabular}
+\label{tab:mitigations}
+\end{table}
+
+\section{Limitations of the Study}
+This simulation establishes the mechanical baseline of a buffer overflow under intentionally restricted conditions. The overflow evaluated was manually crafted by direct assembly instructions rather than introduced via a malicious data payload triggering a logic flaw. Furthermore, the simulation environment intentionally omits operating system privilege rings, no execution (NX) bit implementations, hardware features like superscalar execution or deep out-of-order scheduling, and complex memory hierarchies such as separate instruction and data caches. The static address mapping in Ripes also simulates an environment entirely devoid of Address Space Layout Randomization (ASLR).

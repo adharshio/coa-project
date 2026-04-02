@@ -1,0 +1,14 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Example Stack Frame Mapping}}{11}{table.caption.8}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces The 5 Stages of the Processor Pipeline}}{12}{table.caption.9}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Types of Pipeline Hazards}}{12}{table.caption.10}%
+\contentsline {table}{\numberline {2.4}{\ignorespaces Pipeline Trace for a Control Hazard on \texttt {jr ra}}}{12}{table.caption.11}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Memory Layout within the \texttt {vulnerable} Function}}{16}{table.caption.13}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Output Analysis: Register and Memory State at Each Execution Stage}}{21}{table.caption.19}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Mitigation Strategies and Effectiveness}}{23}{table.caption.20}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

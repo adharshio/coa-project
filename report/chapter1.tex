@@ -1,0 +1,29 @@
+\chapter{Introduction}
+
+\section{Background and Motivation}
+Modern processors rely heavily on pipelining to increase instruction throughput and improve overall system performance. However, security vulnerabilities at the instruction level can uniquely affect architectural behavior. A classic example is the buffer overflow, which remains a historical and ongoing real-world threat to system integrity. By deeply analyzing how a buffer overflow manipulates processor state, we can understand the connection between high-level vulnerabilities and hardware-level execution. The Ripes simulator provides an invaluable platform for this, allowing architectural-level observation that is not possible in high-level languages like C or Python.
+
+\section{Problem Statement}
+\textit{"The core problem is to bridge the gap between theoretical concepts of memory mapping, instruction execution, and pipeline hazards with a practical demonstration of how vulnerabilities at the instruction level can propagate through processor stages and affect overall system behavior."}
+
+\section{Objectives}
+The key objectives of this study are:
+\begin{itemize}
+    \item To practically demonstrate a buffer overflow vulnerability at the instruction level using RISC-V assembly.
+    \item To observe how a corrupted return address hijacks the processor's control flow.
+    \item To trace the resulting control hazard through a 5-stage instruction pipeline.
+    \item To quantify the pipeline penalty incurred by the illicit branch execution.
+\end{itemize}
+
+\section{Study Scope and Constraints}
+This study is conducted under specific constraints to isolate the architectural effects:
+\begin{itemize}
+    \item \textbf{Simulator:} Ripes v2.x, configured with a 5-stage pipelined processor.
+    \item \textbf{ISA:} RV32IM (32-bit RISC-V integer and multiplication instruction set).
+    \item \textbf{Attack Type:} Stack-based return address overwrite.
+    \item \textbf{Environment Context:} The simulation runs bare-metal with no Operating System (OS) or memory cache modelling.
+    \item \textbf{Nature of Exploit:} The overflow is controlled and intentionally induced via assembly logic, not through external user input or accidental bounds violation.
+\end{itemize}
+
+\section{Report Structure}
+The rest of this report is organized as follows: Chapter 2 discusses the theoretical background, including the RISC-V stack architecture, pipelining, and buffer overflow mechanics. Chapter 3 details the methodology and experimental setup. Chapter 4 presents the results observed in the Ripes simulator. Chapter 5 discusses the implications and potential mitigations, followed by the conclusion in Chapter 6.

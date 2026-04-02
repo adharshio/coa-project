@@ -1,0 +1,91 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {chapter}{Acknowledgement}{3}{chapter*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Abstract}{4}{chapter*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of Figures}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of Tables}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Background and Motivation}{9}{section.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Problem Statement}{9}{section.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Objectives}{9}{section.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}Study Scope and Constraints}{10}{section.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}Report Structure}{10}{section.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Theoretical Background}{11}{chapter.2}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Memory and Stack Architecture in RISC-V}{11}{section.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Example Stack Frame Mapping}}{11}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:stack_map}{{2.1}{11}{Example Stack Frame Mapping}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}The 5-Stage Pipeline}{11}{section.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Pipeline Hazards}{11}{section.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces The 5 Stages of the Processor Pipeline}}{12}{table.caption.9}\protected@file@percent }
+\newlabel{tab:pipeline}{{2.2}{12}{The 5 Stages of the Processor Pipeline}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces Types of Pipeline Hazards}}{12}{table.caption.10}\protected@file@percent }
+\newlabel{tab:hazards}{{2.3}{12}{Types of Pipeline Hazards}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Control Hazards and Branch Flush Penalty}{12}{section.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Pipeline Trace for a Control Hazard on \texttt  {jr ra}}}{12}{table.caption.11}\protected@file@percent }
+\newlabel{tab:hazard_trace}{{2.4}{12}{Pipeline Trace for a Control Hazard on \texttt {jr ra}}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Buffer Overflow: Definition and Classification}{12}{section.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Stack-Based Buffer Overflow Mechanics}{13}{section.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Return Address Corruption and PC Hijack}{13}{section.2.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Methodology}{14}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experimental Setup (Ripes Configuration)}{14}{section.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Ripes simulator with 5-stage processor and program loaded.}}{14}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:ss1}{{3.1}{14}{Ripes simulator with 5-stage processor and program loaded}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Program Design and Logic}{14}{section.3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces Vulnerable RISC-V Assembly Program}}{15}{lstlisting.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Stack Memory Map}{16}{section.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Memory Layout within the \texttt  {vulnerable} Function}}{16}{table.caption.13}\protected@file@percent }
+\newlabel{tab:methodology_stack}{{3.1}{16}{Memory Layout within the \texttt {vulnerable} Function}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Instruction Flow Design}{16}{section.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Measurement Procedure}{16}{section.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results and Observations}{18}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Normal Stack Setup}{18}{section.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Register file showing \texttt  {ra=0x00000004} after legitimate save.}}{18}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:ss2}{{4.1}{18}{Register file showing \texttt {ra=0x00000004} after legitimate save}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Buffer Write Phase}{18}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}The Overflow Event}{19}{section.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces \texttt  {sw t0,12(sp)} in MEM stage --- overflow instruction executing.}}{19}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:ss3}{{4.2}{19}{\texttt {sw t0,12(sp)} in MEM stage --- overflow instruction executing}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Return Address Corruption}{19}{section.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces \texttt  {ra} corrupted to \texttt  {0x00000034}; \texttt  {li t1,999} is the current instruction.}}{19}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:ss4}{{4.3}{19}{\texttt {ra} corrupted to \texttt {0x00000034}; \texttt {li t1,999} is the current instruction}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}PC Hijack via \texttt  {jr ra}}{20}{section.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Control Hazard in the Pipeline}{20}{section.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces \texttt  {jr ra} in EX stage; \texttt  {secret} instructions in ID and IF.}}{20}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:ss5}{{4.4}{20}{\texttt {jr ra} in EX stage; \texttt {secret} instructions in ID and IF}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Memory Comparison (Before vs After)}{20}{section.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Output Analysis Table}{20}{section.4.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Side-by-side memory comparison showing return address corruption at sp+12.}}{21}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:memory_comparison}{{4.5}{21}{Side-by-side memory comparison showing return address corruption at sp+12}{figure.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Output Analysis: Register and Memory State at Each Execution Stage}}{21}{table.caption.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Discussion}{22}{chapter.5}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Memory Integrity Violation}{22}{section.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Control Flow Hijacking}{22}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Pipeline Impact}{22}{section.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Security Implications}{23}{section.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Mitigations}{23}{section.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Mitigation Strategies and Effectiveness}}{23}{table.caption.20}\protected@file@percent }
+\newlabel{tab:mitigations}{{5.1}{23}{Mitigation Strategies and Effectiveness}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Limitations of the Study}{23}{section.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{24}{chapter.6}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}RISC-V Assembly Source Code}{25}{appendix.A}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {A.1}{\ignorespaces Complete Buffer Overflow Exploit Program}}{25}{lstlisting.A.1}\protected@file@percent }
+\bibstyle{ieeetr}
+\bibdata{references}
+\gdef \@abspage@last{26}

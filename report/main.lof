@@ -1,0 +1,13 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Ripes simulator with 5-stage processor and program loaded.}}{14}{figure.caption.12}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Register file showing \texttt {ra=0x00000004} after legitimate save.}}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \texttt {sw t0,12(sp)} in MEM stage --- overflow instruction executing.}}{19}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \texttt {ra} corrupted to \texttt {0x00000034}; \texttt {li t1,999} is the current instruction.}}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \texttt {jr ra} in EX stage; \texttt {secret} instructions in ID and IF.}}{20}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Side-by-side memory comparison showing return address corruption at sp+12.}}{21}{figure.caption.18}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,97 @@
+\documentclass[12pt,a4paper]{report}
+
+% --- Packages ---
+\usepackage{times}           % Times New Roman
+\usepackage{setspace}        % Line spacing
+\usepackage{geometry}        % Margins
+\usepackage{graphicx}        % Figures
+\usepackage{booktabs}        % Professional tables
+\usepackage{tabularx}        % Flexible tables
+\usepackage{caption}         % Figure/table captions
+\usepackage{subcaption}      % Subfigures
+\usepackage{listings}        % Code listings
+\usepackage{amsmath}         % Math equations
+\usepackage{hyperref}        % Hyperlinks in PDF
+\usepackage{fancyhdr}        % Headers/footers
+\usepackage{titlesec}        % Section title formatting
+\usepackage{ragged2e}        % Justification
+
+% --- Geometry ---
+\geometry{top=1in, bottom=1in, left=1.5in, right=1in}
+
+% --- Spacing ---
+\onehalfspacing
+
+% --- Title formatting ---
+% Chapter title: 18pt Bold Centered
+\titleformat{\chapter}[display]
+  {\normalfont\fontsize{18}{22}\bfseries\centering}
+  {Chapter \thechapter}{20pt}{}
+
+% Section (Heading 2): 16pt Bold Left
+\titleformat{\section}
+  {\normalfont\fontsize{16}{20}\bfseries}
+  {\thesection}{1em}{}
+
+% Subsection (Heading 3): 14pt Bold Left
+\titleformat{\subsection}
+  {\normalfont\fontsize{14}{18}\bfseries}
+  {\thesubsection}{1em}{}
+
+% --- Code listings styling ---
+\lstdefinelanguage{RISCV}{
+  morekeywords={addi,sw,lw,jal,jalr,jr,la,li,bne,blt,add,sub,nop,j},
+  sensitive=false,
+  morecomment=[l]{\#},
+}
+\lstset{
+  language=RISCV,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  captionpos=b
+}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{Buffer Overflow and Control Hazards in RISC-V}}
+\lhead{\textit{NSS College of Engineering, Palakkad}}
+\cfoot{\thepage}
+
+% --- Document begins ---
+\begin{document}
+
+\input{titlepage}
+\input{certification}
+\input{acknowledgement}
+\input{abstract}
+
+\tableofcontents
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+\input{chapter6}
+\input{appendix}
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}

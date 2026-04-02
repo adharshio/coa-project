@@ -1,0 +1,41 @@
+\appendix
+\chapter{RISC-V Assembly Source Code}
+
+Below is the full, annotated RISC-V assembly source code used for the buffer overflow demonstration in the Ripes simulator. As executed, the function bypasses natural termination constraints through a stack memory violation.
+
+\begin{lstlisting}[language=RISCV, caption={Complete Buffer Overflow Exploit Program}]
+.text
+.globl main
+
+main:
+    jal ra, vulnerable      # call function; ra = addr of "j end"
+    j end                   # Intended return point
+
+vulnerable:
+    addi sp, sp, -16        # allocate 16-byte stack frame
+    sw ra, 12(sp)           # save legitimate return address
+
+    # --- Normal execution boundaries ---
+    li t0, 10
+    sw t0, 0(sp)            # buf[0] = 10
+    sw t0, 4(sp)            # buf[1] = 10
+
+    # --- Exploit Trigger ---
+    # Overflow: overwrite saved return address
+    la t0, secret
+    sw t0, 12(sp)           # OVERFLOW: saved ra -> address of secret
+
+    # --- Function Epilogue ---
+    # Return using corrupted ra
+    lw ra, 12(sp)           # ra = address of secret (corrupted)
+    addi sp, sp, 16
+    jr ra                   # PC hijacked -> jumps to secret
+
+secret:
+    # --- Unauthorized Execution Zone ---
+    li t1, 999              # marker: proves execution reached here
+    j end
+
+end:
+    nop
+\end{lstlisting}

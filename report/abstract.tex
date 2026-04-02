@@ -1,0 +1,10 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+This project analyzes the impact of buffer overflow vulnerabilities on the RISC-V processor pipeline. Utilizing the Ripes simulator, the study models a 5-stage RISC-V pipeline executing a custom RISC-V assembly program designed with a vulnerable function. The objective is to bridge the gap between theoretical memory mapping and practical instruction-level execution.
+
+By intentionally overwriting the saved return address (\texttt{ra}) on the stack, the experiment demonstrates how a memory corruption vulnerability can escalate into a control flow subversion. The findings show that an overflow at \texttt{sp+12} corrupts the return address from its legitimate value (\texttt{0x00000004}) to a target address (\texttt{0x00000034}), successfully hijacking the program counter (PC) to execute a hidden code segment. Furthermore, the analysis reveals that this attack incurs a 2-cycle control hazard penalty as the processor pipeline resolves the \texttt{jr ra} instruction during the Execution (EX) stage.
+
+\vspace{1cm}
+\noindent\textbf{Keywords:} Buffer Overflow, RISC-V, Stack-Based Attack, Return Address, Control Hazard, Pipeline Flush, Ripes Simulator
+\newpage

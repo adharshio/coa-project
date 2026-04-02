@@ -1,0 +1,91 @@
+\chapter{Theoretical Background}
+
+\section{Memory and Stack Architecture in RISC-V}
+In the RISC-V architecture, the stack traditionally grows downwards, meaning the stack pointer (\texttt{sp}) decreases as memory is allocated. A typical stack frame layout consists of local buffers, padding, and the saved return address (\texttt{ra}). For a frame containing a 2-word buffer and the saved return address:
+\begin{itemize}
+    \item \texttt{sp+0} = \texttt{buf[0]}
+    \item \texttt{sp+4} = \texttt{buf[1]}
+    \item \texttt{sp+12} = \texttt{saved\_ra}
+\end{itemize}
+
+\begin{table}[h]
+\caption{Example Stack Frame Mapping}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Offset} & \textbf{Address (example)} & \textbf{Contents} \\
+\hline
+\texttt{sp+0} & \texttt{0x7fffffe0} & \texttt{buf[0] = 10} \\
+\texttt{sp+4} & \texttt{0x7fffffe4} & \texttt{buf[1] = 10} \\
+\texttt{sp+8} & \texttt{0x7fffffe8} & (unused/padding) \\
+\texttt{sp+12} & \texttt{0x7fffffec} & saved \texttt{ra} (TARGET) \\
+\hline
+\end{tabular}
+\label{tab:stack_map}
+\end{table}
+
+\section{The 5-Stage Pipeline}
+Pipelining allows multiple instructions to be processed simultaneously. The standard 5-stage RISC-V pipeline consists of the following stages:
+
+\begin{table}[h]
+\caption{The 5 Stages of the Processor Pipeline}
+\centering
+\begin{tabular}{|l|l|p{8cm}|}
+\hline
+\textbf{Stage} & \textbf{Name} & \textbf{Description} \\
+\hline
+IF & Instruction Fetch & Fetches the instruction from memory using the PC. \\
+ID & Instruction Decode & Decodes the instruction and reads registers. \\
+EX & Execution & ALU performs arithmetic or resolves branch conditions/targets. \\
+MEM & Memory Access & Reads or writes data to/from data memory. \\
+WB & Write Back & Writes the result back to the register file. \\
+\hline
+\end{tabular}
+\label{tab:pipeline}
+\end{table}
+
+\section{Pipeline Hazards}
+Hazards prevent the next instruction in the instruction stream from executing during its designated clock cycle. There are three primary types of pipeline hazards:
+
+\begin{table}[h]
+\caption{Types of Pipeline Hazards}
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Hazard Type} & \textbf{Description} \\
+\hline
+Structural Hazard & Hardware cannot support the combination of instructions needed in the same clock cycle. \\
+Data Hazard & Instruction depends on the results of a previous instruction still in the pipeline. \\
+Control Hazard & Caused by a delay in determining the proper target address of a branch or jump. \\
+\hline
+\end{tabular}
+\label{tab:hazards}
+\end{table}
+
+\section{Control Hazards and Branch Flush Penalty}
+Control hazards occur when the pipeline makes the wrong decision on branch prediction and fetches instructions that shouldn't be executed. In the tested RISC-V pipeline, branches resolve at the Execution (EX) stage. If a branch is taken, the instructions already loaded into the IF and ID stages must be flushed, resulting in a \textbf{2-cycle penalty} (Formula: Penalty = 2 cycles per taken branch).
+
+\begin{table}[h]
+\caption{Pipeline Trace for a Control Hazard on \texttt{jr ra}}
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Instruction} & \textbf{C1} & \textbf{C2} & \textbf{C3} & \textbf{C4} & \textbf{C5} \\
+\hline
+\texttt{jr ra} & IF & ID & EX & MEM & WB \\
+Fetch+1 & & IF & flush & & \\
+Fetch+2 & & & IF & flush & \\
+\texttt{secret[0]} & & & & IF & ID \\
+\hline
+\end{tabular}
+\label{tab:hazard_trace}
+\end{table}
+
+\section{Buffer Overflow: Definition and Classification}
+According to NIST, a buffer overflow occurs when a program attempts to put more data in a memory buffer than it can hold, leading to memory corruption. Vulnerabilities are generally classified into heap-based and stack-based overflows. In our study, we focus on a stack-based buffer overflow, specifically targeting \texttt{sp+12}, where the architecture stores the return address (\texttt{ra}) for function calls.
+
+\section{Stack-Based Buffer Overflow Mechanics}
+During normal execution, data is written exclusively to the allocated space (e.g., \texttt{sp+0} and \texttt{sp+4}). A stack-based overflow occurs when a write operation bypasses these bounds, writing to adjacent memory addresses. When an attacker intentionally writes to \texttt{sp+12}, they overwrite the saved \texttt{ra}, effectively changing the control return path.
+
+\section{Return Address Corruption and PC Hijack}
+In RISC-V, the return address registers (\texttt{x1} or \texttt{ra}) hold the address to return to after a subroutine completes. A subroutine call (\texttt{jal}) writes \texttt{PC+4} to \texttt{ra}. If the stack memory corresponding to the saved \texttt{ra} is overwritten, the \texttt{lw ra, 12(sp)} instruction during the function epilogue will load a corrupted value. Consequently, when the \texttt{jr ra} instruction executes, the Program Counter (PC) jumps to the illicit address, effectively hijacking control flow of the processor.
